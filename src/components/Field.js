@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
 
+// refactor to use LanguageContext component
 const Field = () => {
-    // using context method in this component
-    const language = useContext(LanguageContext);
+    // using context method in this component to demonstrate multiple contexts with useContext
+    const languageContext = useContext(LanguageContext);
     const color = useContext(ColorContext);
 
-    const text = language === 'english' ? 'Name' : 'Naam';
+    const text = languageContext.language === 'english' ? 'Name' : 'Naam';
 
     return (
         <div className="ui field">
@@ -16,6 +17,20 @@ const Field = () => {
         </div>
     );
 };
+
+// const Field = () => {
+//     const language = useContext(LanguageContext);
+//     const color = useContext(ColorContext);
+
+//     const text = language === 'english' ? 'Name' : 'Naam';
+
+//     return (
+//         <div className="ui field">
+//             <label style={{color: color}}>{text}</label>
+//             <input />
+//         </div>
+//     );
+// };
 
 // using a class
 // class Field extends React.Component {

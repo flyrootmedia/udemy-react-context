@@ -2,6 +2,7 @@ import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
 
+// refactor to use LanguageContext component
 const Button = () => {
     // Using Consumer approach in this component. Need to use Consumer in class based
     // components when we want to get multiple context objects into a single component.
@@ -12,13 +13,27 @@ const Button = () => {
             {(color) => 
                 <button className={`ui button ${color}`}>
                     <LanguageContext.Consumer>
-                        {(value) => value === 'english' ? 'Submit' : 'Voorleggen'}
+                        {({ language }) => language === 'english' ? 'Submit' : 'Voorleggen'}
                     </LanguageContext.Consumer>
                 </button>
             }
         </ColorContext.Consumer>
     );
 };
+
+// const Button = () => {
+//     return (
+//         <ColorContext.Consumer>
+//             {(color) => 
+//                 <button className={`ui button ${color}`}>
+//                     <LanguageContext.Consumer>
+//                         {(value) => value === 'english' ? 'Submit' : 'Voorleggen'}
+//                     </LanguageContext.Consumer>
+//                 </button>
+//             }
+//         </ColorContext.Consumer>
+//     );
+// };
 
 // using a class
 // class Button extends React.Component {
